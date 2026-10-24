@@ -1,0 +1,29 @@
+CUSTOMER BEHAVIOR & MARKET BASKET ANALYSIS
+DATA CLEANING SUMMARY
+==================================================
+Source file: C:\Users\nishu\OneDrive\Desktop\projects\Customer behavior & Market basket Analysis system\data\raw\Online Retail.xlsx
+Original rows: 541,909
+Rows retained for sales analysis: 524,878
+Rows excluded from sales analysis: 17,031
+
+Quality flag counts (flags can overlap):
+exact_duplicate: 5,268
+missing_mandatory_field: 0
+missing_description: 1,454
+missing_customer_id: 135,080
+invalid_quantity: 0
+nonpositive_quantity: 10,624
+invalid_unit_price: 0
+nonpositive_unit_price: 2,517
+cancellation_invoice: 9,288
+excluded_from_sales: 17,031
+
+Missing CustomerID in retained sales: 132,186
+Retained sales line revenue: 10,642,110.80
+
+Policy notes:
+- Cancellation invoices are excluded from sales analysis.
+- Nonpositive quantities and unit prices are excluded.
+- Exact duplicate rows after normalization are excluded.
+- Missing CustomerID is allowed in sales data.
+- All input rows and quality flags are preserved in the audit.
