@@ -13,6 +13,7 @@ st.write("Explore sales performance, customer behavior, and market basket insigh
 
 REPORTS_DIR = Path("outputs/reports")
 
+
 @st.cache_data
 def load_report(filename):
     path = REPORTS_DIR / filename
@@ -20,34 +21,32 @@ def load_report(filename):
         return pd.read_csv(path)
     return None
 
+
+def show_report(filename, title):
+    st.subheader(title)
+    data = load_report(filename)
+
+    if data is not None:
+        st.dataframe(data, use_container_width=True)
+    else:
+        st.info(f"{filename} is not available in the deployed repository.")
+
+
 # Sales overview
 st.header("📊 Sales Overview")
-
-sales = load_report("sales_summary.csv")
-
-if sales is not None:
-    st.dataframe(sales, use_container_width=True)
-else:
-    st.info("Sales summary report was not found.")
+show_report("sales_kpis.csv", "Sales KPIs")
+show_report("monthly_sales.csv", "Monthly Sales")
+show_report("country_sales.csv", "Sales by Country")
+show_report("top_products.csv", "Top Products")
 
 # Customer analysis
 st.header("👥 Customer Analysis")
-
-customers = load_report("customer_segments.csv")
-
-if customers is not None:
-    st.dataframe(customers, use_container_width=True)
-else:
-    st.info("Customer segment report was not found.")
+show_report("customer_kpis.csv", "Customer KPIs")
+show_report("customer_segments.csv", "Customer Segments")
+show_report("customer_summary.csv", "Customer Summary")
 
 # Market basket analysis
-st.header("🛍️ Market Basket Analysis")
-
-rules = load_report("market_basket_rules.csv")
-
-if rules is not None:
-    st.dataframe(rules.head(100), use_container_width=True)
-else:
-    st.info("Market basket rules are not available in the deployed repository yet.")
+st.header("🛒 Market Basket Analysis")
+show_report("basket_item_support.csv", "Popular Items and Basket Support")
 
 st.caption("Customer Behavior & Market Basket Analysis System")
