@@ -32,3 +32,4 @@ Thumbs.db
 
 # Local datasets and generated cleaning files
 data/
+outputs/reports/market_basket_rules.csv
